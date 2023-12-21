@@ -4,9 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { TopHeaderComponent } from './top-header/top-header.component';
-import { SearchComponent } from './product-list/search/search.component';
-import { ProductListComponent } from './product-list/product-list.component';
+import { SearchComponent } from './container/search/search.component';
+import { ContainerComponent } from './container/container.component';
 import { FormsModule } from '@angular/forms';
+import { ProductListComponent } from './container/product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     TopHeaderComponent,
     SearchComponent,
+    ContainerComponent,
     ProductListComponent
   ],
   imports: [
