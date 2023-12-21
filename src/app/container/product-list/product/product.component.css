@@ -13,6 +13,7 @@
     border: white 2px solid;
     box-shadow: 10px 10px 18px #cccccc;
     transform: scale(1.05);
+    cursor: pointer;
 }
 
 .ekart-wishlist-sale-container{
