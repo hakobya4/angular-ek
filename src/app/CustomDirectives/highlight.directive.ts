@@ -10,7 +10,7 @@ export class HighlightDirective {
   @HostListener('mouseenter') OnMouseEnter(){
     this.renderer.addClass(this.element.nativeElement, 'highlight-product')
   }
-  @HostListener('mouseout') OnMouseOut(){
+  @HostListener('mouseleave') OnMouseOut(){
     this.renderer.removeClass(this.element.nativeElement, 'highlight-product')
   }
 }

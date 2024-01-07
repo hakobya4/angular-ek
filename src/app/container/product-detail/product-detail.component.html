@@ -11,7 +11,7 @@
             <h2>{{product.name}}</h2>
         </div>
         <div class="ekart-product-detail-gbc">
-            <span setBackground>{{product.gender.toUpperCase()}}</span>
+            <span [setBackground]="'red'" [textColor]="'black'">{{product.gender.toUpperCase()}}</span>
             <span setBackground>{{product.brand.toUpperCase()}}</span>
             <span setBackground>{{product.category.toUpperCase()}}</span>
         </div>
@@ -27,7 +27,7 @@
                 <h4>Available Size</h4>
             </div>
             <diV style="margin-top: 20px">
-                <span class="ekart-product-detail-available-size" *ngFor="let prod of product.size">{{prod}}</span>
+                <span class="ekart-product-detail-available-size" *ngFor="let prod of product.size" appHover>{{prod}}</span>
             </diV>                
         </div>
 
@@ -50,7 +50,7 @@
         </div>
     </div>
     <div class="ekart-product-detail-addtoCart">
-        <button class="btn-add-to-cart" *ngIf="product.is_in_inventory; else notifyMe">ADD TO CART</button>
+        <button class="btn-add-to-cart" *ngIf="product.is_in_inventory; else notifyMe" appHover>ADD TO CART</button>
         <ng-template #notifyMe>
             <button class="btn-add-to-cart">NOTIFY ME</button>
         </ng-template>
