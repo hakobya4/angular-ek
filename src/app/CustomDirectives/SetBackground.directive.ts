@@ -5,14 +5,13 @@ import { Directive, ElementRef, Input, Renderer2 } from "@angular/core";
 })
 
 export class SetBackground{
-    @Input('setBackground') backColor:string='#36454F'
-    @Input() textColor:string='black'
+    @Input('setBackground') changeTextAndBackColor:{backColor:string, textColor:string}
     constructor(private element: ElementRef,  private renderer: Renderer2){
 
     }
 
     ngOnInit(){
-        this.renderer.setStyle(this.element.nativeElement, 'backgroundColor',this.backColor)
-        this.renderer.setStyle(this.element.nativeElement, 'color',this.textColor)
+        this.renderer.setStyle(this.element.nativeElement, 'backgroundColor',this.changeTextAndBackColor.backColor)
+        this.renderer.setStyle(this.element.nativeElement, 'color',this.changeTextAndBackColor.textColor)
     }
 }

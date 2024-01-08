@@ -11,9 +11,9 @@
             <h2>{{product.name}}</h2>
         </div>
         <div class="ekart-product-detail-gbc">
-            <span [setBackground]="'red'" [textColor]="'black'">{{product.gender.toUpperCase()}}</span>
-            <span setBackground>{{product.brand.toUpperCase()}}</span>
-            <span setBackground>{{product.category.toUpperCase()}}</span>
+            <span [setBackground]="{backColor:'red', textColor:'white'}">{{product.gender.toUpperCase()}}</span>
+            <span [setBackground]>{{product.brand.toUpperCase()}}</span>
+            <span [setBackground]>{{product.category.toUpperCase()}}</span>
         </div>
         <div class="ekart-product-detail-price">
             <p>
