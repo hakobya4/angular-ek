@@ -1,11 +1,22 @@
 <div class="ekart--search--product">
-    <input type="text" class="ekart-search-product-input" placeholder="Search" [(ngModel)]="searchText"
-        (input)="onSearchTextChanged()">
-    <button [ngClass]="{'btn': true, 'btn-search':searchText, 'btn-search-disabled':!searchText}"
-        [disabled]="!searchText">
-        Search
-    </button>
-</div>
-<div class="ekart-search-result-for">
-    <p *ngIf="searchText !=''"><strong>Search result for:</strong>{{searchText}}</p>
+  <mat-form-field>
+    <mat-select matNativeControl required [value]="optionValue">
+      <mat-option *ngFor="let option of searchOptions" [value]="option">{{
+        option
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <input
+    type="text"
+    class="ekart-search-product-input"
+    placeholder="Search"
+    [(ngModel)]="searchText"
+    (input)="onSearchTextChanged()"
+    style="height: 50px"
+  />
+  <span>
+    <img src="../../../assets/map-pin.png" style="width: 20px" />Select on map
+  </span>
+  <button class="btn btn-search">Search</button>
 </div>
