@@ -1,5 +1,4 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { PostingsComponent } from './postings/postings.component';
 
 @Component({
   selector: 'app-container',
@@ -8,8 +7,14 @@ import { PostingsComponent } from './postings/postings.component';
 })
 export class ContainerComponent {
   searchText: string = '';
-  @ViewChild(PostingsComponent) productListComponent: PostingsComponent;
+  mapView = false;
   setSearchText(value: string) {
     this.searchText = value;
+  }
+  public openMap($event: any): void {
+    this.mapView = $event;
+  }
+  public closeMap($event: any): void {
+    this.mapView = $event;
   }
 }

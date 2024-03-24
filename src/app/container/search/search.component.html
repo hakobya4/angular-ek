@@ -7,16 +7,19 @@
     </mat-select>
   </mat-form-field>
 
-  <input
-    type="text"
-    class="ekart-search-product-input"
-    placeholder="Search"
-    [(ngModel)]="searchText"
-    (input)="onSearchTextChanged()"
-    style="height: 50px"
-  />
   <span>
+    <input
+      type="text"
+      class="ekart-search-product-input"
+      placeholder="Search"
+      [(ngModel)]="searchText"
+      (input)="onSearchTextChanged()"
+      style="height: 50px"
+    />
+  </span>
+  <span class="mapView" (click)="openMapView()">
     <img src="../../../assets/map-pin.png" style="width: 20px" />Select on map
   </span>
+
   <button class="btn btn-search">Search</button>
 </div>

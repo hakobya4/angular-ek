@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { MapViewComponent } from './container/search/map-view/map-view.component';
 
 @Component({
   selector: 'app-root',

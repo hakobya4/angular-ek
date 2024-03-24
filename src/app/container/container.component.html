@@ -1,5 +1,14 @@
 <div class="ekart--product--container">
-  <app-search (onSearchTextChanges)="setSearchText($event)"></app-search>
+  <app-search
+    (onMapOpen)="openMap($event)"
+    (onSearchTextChanges)="setSearchText($event)"
+  ></app-search>
   <postings [searchText]="searchText"></postings>
+  <map-view
+    *ngIf="mapView"
+    [mapClose]="mapView"
+    (onMapClose)="closeMap($event)"
+  >
+  </map-view>
 </div>
 >

@@ -30,3 +30,9 @@
   margin: 20px auto;
   padding: 10px 140px;
 }
+
+.mapView {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  cursor: pointer;
+}

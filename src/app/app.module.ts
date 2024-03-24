@@ -18,6 +18,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MapViewComponent } from './container/search/map-view/map-view.component';
+
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     HighlightDirective,
     AppHoverDirective,
     DisableProductDirective,
+    MapViewComponent,
   ],
   imports: [
     CarouselModule,
