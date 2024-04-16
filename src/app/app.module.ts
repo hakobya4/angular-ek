@@ -19,8 +19,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MapViewComponent } from './container/search/map-view/map-view.component';
-
+import { MatCardModule } from '@angular/material/card';
+import { LoginFormComponent } from './login-form/login-form.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RegisterFormComponent } from './register-form/register-form.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     AppHoverDirective,
     DisableProductDirective,
     MapViewComponent,
+    LoginFormComponent,
+    RegisterFormComponent,
   ],
   imports: [
     CarouselModule,
@@ -47,6 +52,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     ReactiveFormsModule,
     MatInputModule,
     MatNativeDateModule,
+    MatCardModule,
+    MatDialogModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],
