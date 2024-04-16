@@ -6,15 +6,9 @@ import { Component, Input, ViewChild } from '@angular/core';
   styleUrl: './container.component.css',
 })
 export class ContainerComponent {
-  searchText: string = '';
   mapView = false;
-  setSearchText(value: string) {
-    this.searchText = value;
-  }
+
   public openMap($event: any): void {
-    this.mapView = $event;
-  }
-  public closeMap($event: any): void {
     this.mapView = $event;
   }
 }

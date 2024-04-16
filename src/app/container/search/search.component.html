@@ -1,25 +1,75 @@
-<div class="ekart--search--product">
-  <mat-form-field>
+<div style="display: flex">
+  <mat-form-field style="max-height: 80px">
     <mat-select matNativeControl required [value]="optionValue">
-      <mat-option *ngFor="let option of searchOptions" [value]="option">{{
-        option
-      }}</mat-option>
+      <mat-option
+        (click)="setPlaceholder(option)"
+        *ngFor="let option of searchOptions"
+        [value]="option"
+      >
+        {{ option }}
+      </mat-option>
     </mat-select>
   </mat-form-field>
+  <div>
+    <div class="searchText">
+      <ul class="searchContent">
+        <div class="searchToken">
+          <li
+            class="selected-list"
+            *ngFor="
+              let item of selectedToken | keyvalue : keepOriginalOrder;
+              let last = last
+            "
+            [style.opacity]="last ? lastDivOpacity : '1'"
+          >
+            <a
+              class="Close"
+              id="tokenClose"
+              (click)="deleteSelectToken(item.key, item.value)"
+              >×</a
+            >
+            {{ item.key }}
+          </li>
+        </div>
+        <br />
+        <div>
+          <input
+            [(ngModel)]="searchText"
+            type="search"
+            placeholder="Type {{ placeholder }} here..."
+            size="45"
+            (input)="typeText($event)"
+            (keydown)="onBackspace($event)"
+          />
+        </div>
+      </ul>
+      <ul *ngIf="searchText" class="Dropdown">
+        <li
+          *ngFor="let item of neighborhoodname.sort()"
+          class="list-Down"
+          (click)="addselectedToken(item)"
+        >
+          <ng-container
+            *ngIf="item.toLowerCase().includes(searchText.toLowerCase())"
+          >
+            {{ item }}
+          </ng-container>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-  <span>
-    <input
-      type="text"
-      class="ekart-search-product-input"
-      placeholder="Search"
-      [(ngModel)]="searchText"
-      (input)="onSearchTextChanged()"
-      style="height: 50px"
-    />
-  </span>
-  <span class="mapView" (click)="openMapView()">
+  <div class="mapView" (click)="openMapView()">
     <img src="../../../assets/map-pin.png" style="width: 20px" />Select on map
-  </span>
+  </div>
 
   <button class="btn btn-search">Search</button>
 </div>
+<map-view
+  *ngIf="mapView"
+  [mapClose]="mapView"
+  (onMapClose)="closeMap($event)"
+  (onSelectToken)="addSelectToken($event)"
+  [reselectedToken]="selectedToken"
+>
+</map-view>

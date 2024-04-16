@@ -18,17 +18,28 @@ export class MapViewComponent implements OnInit {
   communityTokens: any = {};
   public keepOriginalOrder = (a, b) => a.key;
   numberOfPairs: any;
+  latLng: any[] = [];
 
   ngOnInit(): void {
     this.loadGeoJSONData();
+    if (this.reselectedToken) {
+      this.communityTokens = this.reselectedToken;
+    }
   }
   @Input()
-  mapClose = true;
+  mapClose = false;
+  @Input()
+  reselectedToken: any;
   @Output()
   onMapClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   public closeMapView(): void {
     this.mapClose = false;
     this.onMapClose.emit(this.mapClose);
+  }
+  @Output()
+  onSelectToken: EventEmitter<any[]> = new EventEmitter<any[]>();
+  public selectToken(token: any[]): void {
+    this.onSelectToken.emit(token);
   }
   loadGeoJSONData(): void {
     this.http
@@ -58,32 +69,17 @@ export class MapViewComponent implements OnInit {
     this.gtaBoundaries.features.forEach((feature: any) => {
       const geometry = feature.geometry;
       const neigborhood = feature.properties.name;
-      if (!geometry || geometry.type !== 'MultiPolygon') {
-        console.error('Invalid geometry for feature:', feature);
-        return;
-      }
 
       const coordinates = geometry.coordinates;
       coordinates.forEach((multiPolygon: any) => {
-        if (!Array.isArray(multiPolygon)) {
-          console.error('Invalid coordinates for feature:', feature);
-          return;
-        }
         multiPolygon.forEach((polygonCoordinates: any) => {
-          if (!Array.isArray(polygonCoordinates)) {
-            console.error('Invalid polygon coordinates for feature:', feature);
-            return;
-          }
-
           // Transform GeoJSON coordinates to LatLng format
-
           const paths = polygonCoordinates.map((ring: any) => {
             return {
               lat: parseFloat(ring[1]),
               lng: parseFloat(ring[0]),
             };
           });
-
           const boundary = new google.maps.Polygon({
             paths: paths,
             strokeColor: '#000000',
@@ -93,6 +89,7 @@ export class MapViewComponent implements OnInit {
             fillOpacity: 0.2,
             content: neigborhood,
           });
+
           // Add event listeners for mouseover and mouseout
           boundary.addListener('mouseover', (event) => {
             const mouseX = event.domEvent.clientX;

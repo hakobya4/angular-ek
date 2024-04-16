@@ -1,47 +1,37 @@
-
-.ekart--header{
-    width: 100%;
-    height: 11vh;
-    display:flex;
-    flex-wrap: wrap;
-    border-bottom: #E5E4E2 1.5px solid;
+.header {
+  background-color: black;
+}
+.anahit--header {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 20px;
+}
+a {
+  color: white;
 }
 
-.ekart-logo{
-    padding: 1.2vh 8vh;
-    font-size: 40px;
-    font-weight: bold;
-    color: #36454F;
-    font-family: 'Concert One', cursive;
-    width:20%;
+.anahitLogo {
+  height: 30vh;
 }
-.ekart--header--nav{
-    width: 80%;
-    padding: 1vh 2vh;
-    font-size: 10px;
+
+.ekart-logo {
+  padding: 1.2vh 8vh;
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  font-family: "Concert One", cursive;
+  width: 20%;
 }
-.ekart--top--bar{
-    width:auto;
-    text-align: right;
-    padding-top: 3px;
-    padding-bottom: 15px;
-    padding-right: 30px;
+a {
+  text-decoration: none;
+  padding: 0 10px;
 }
-.ekart-menu{
-    padding-top: 2vh;
-    padding: 1vh 1vh;
-    color: #36454F;
-    font-family: 'Montserrat', sans-serif;
-    font-weight:normal;
-    font-size: 14px;
-    width:70%;
-    text-align: center;
-}
-.ekart--bottom--bar{
-    display: flex;
-}
-a{
-    text-decoration: none;   
-    padding: 0 10px; 
-    color: #28282B;
+
+.menu {
+  display: flex;
+  justify-content: center;
 }
