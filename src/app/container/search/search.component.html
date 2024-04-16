@@ -1,4 +1,4 @@
-<div style="display: flex">
+<div style="display: flex; margin-bottom: 5%">
   <mat-form-field style="max-height: 80px">
     <mat-select matNativeControl required [value]="optionValue">
       <mat-option
@@ -37,9 +37,10 @@
             [(ngModel)]="searchText"
             type="search"
             placeholder="Type {{ placeholder }} here..."
-            size="45"
+            size="30"
             (input)="typeText($event)"
             (keydown)="onBackspace($event)"
+            style="height: 20px"
           />
         </div>
       </ul>
@@ -60,10 +61,13 @@
   </div>
 
   <div class="mapView" (click)="openMapView()">
-    <img src="../../../assets/map-pin.png" style="width: 20px" />Select on map
+    <img
+      src="../../../assets/map-pin.png"
+      style="width: 20px; align-items: center"
+    />Select on map
   </div>
 
-  <button class="btn btn-search">Search</button>
+  <button class="btn btn-search" style="height: 120px">Search</button>
 </div>
 <map-view
   *ngIf="mapView"

@@ -19,8 +19,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MapViewComponent } from './container/search/map-view/map-view.component';
-
-import { GoogleMapsModule } from '@angular/google-maps';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { MatCardModule } from '@angular/material/card';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
+import { RegisterFormComponent } from './register-form/register-form.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -34,6 +41,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     AppHoverDirective,
     DisableProductDirective,
     MapViewComponent,
+    LoginFormComponent,
+    RegisterFormComponent,
   ],
   imports: [
     CarouselModule,
@@ -47,8 +56,25 @@ import { GoogleMapsModule } from '@angular/google-maps';
     ReactiveFormsModule,
     MatInputModule,
     MatNativeDateModule,
+    MatCardModule,
+    MatDialogModule,
+    SocialLoginModule,
   ],
-  providers: [provideAnimationsAsync()],
+  providers: [
+    provideAnimationsAsync(),
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('YOUR_GOOGLE_CLIENT_ID'),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+  </head>
+  <header></header>
+  <body>
+    <mat-card>
+      <div
+        style="display: flex; justify-content: end"
+        class="close"
+        (click)="closeDialogButton()"
+      ></div>
+
+      <h1 mat-card-header style="text-align: center; padding-top: 5%">
+        <mat-card-title>Login!</mat-card-title>
+      </h1>
+      <mat-card-content>
+        <form>
+          <label for="Username">Username:</label>
+          <br />
+          <mat-form-field>
+            <input
+              matInput
+              [(ngModel)]="userData.Username"
+              placeholder="Username"
+              type="text"
+              id="Username"
+              name="Username"
+              required
+              class="custom-placeholder"
+              ngModel
+            />
+          </mat-form-field>
+          <br />
+          <label for="Password">Password:</label>
+          <br />
+          <mat-form-field>
+            <input
+              matInput
+              [(ngModel)]="userData.Password"
+              type="password"
+              placeholder="Password"
+              id="Password"
+              name="Password"
+              required
+              class="custom-placeholder"
+              style="color: white"
+              ngModel
+            />
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <button (click)="signInWithGoogle()">Sign in with Google</button>
+      <mat-card-actions
+        style="
+          justify-content: space-between;
+          margin-left: 2%;
+          margin-right: 2%;
+        "
+      >
+        <button
+          type="button"
+          style="border-radius: 10px"
+          class="button"
+          color="primary"
+          (click)="openRegisterDialog()"
+        >
+          Register
+        </button>
+        <button
+          type="submit"
+          style="border-radius: 10px"
+          class="button"
+          color="primary"
+        >
+          Login
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </body>
+</html>
