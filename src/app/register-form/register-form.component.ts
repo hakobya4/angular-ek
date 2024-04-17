@@ -28,7 +28,7 @@ export class RegisterFormComponent {
     this.dialogRef.close();
     this.dialog.open(LoginFormComponent, {
       width: '40%',
-      height: '50%',
+      height: '60%',
     });
   }
   closeDialogButton() {

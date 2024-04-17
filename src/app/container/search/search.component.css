@@ -77,7 +77,7 @@ input {
   margin-left: none;
 }
 .Dropdown {
-  width: 200%;
+  width: 95%;
   overflow: scroll;
   z-index: 7;
   background-color: white;

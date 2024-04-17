@@ -20,10 +20,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MapViewComponent } from './container/search/map-view/map-view.component';
 import { MatCardModule } from '@angular/material/card';
-import { LoginFormComponent } from './login-form/login-form.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RegisterFormComponent } from './register-form/register-form.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
   declarations: [

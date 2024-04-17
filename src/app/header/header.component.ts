@@ -13,7 +13,7 @@ export class HeaderComponent {
   openUserLoginDialog(): void {
     this.dialog.open(LoginFormComponent, {
       width: '40%',
-      height: '50%',
+      height: '60%',
     });
   }
 }
