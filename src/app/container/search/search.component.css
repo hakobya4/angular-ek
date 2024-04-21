@@ -1,39 +1,93 @@
-.ekart--search--product{
-    margin: 20px auto;
-    text-align: center;
+.btn {
+  border: none;
 }
-.ekart-search-product-input{
-    width: 40%;
-    height: 5.5vh;
-    padding: 1px 10px;
-    outline: none;
-    border-radius: 2px;
-    background-color: #efefef;
-    border:#28282B 1px solid;
+.btn-search {
+  padding: 12px 30px;
+  background-color: #28282b;
+  color: #fff;
+  cursor: pointer;
+  height: 55px;
+  left: 90%;
+  position: absolute;
+}
+.mat-mdc-form-field {
+  width: 20%;
+}
+.mapView {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  cursor: pointer;
+  max-height: 80px;
+  left: 80% !important;
+  width: 10%;
+  position: absolute;
+}
+.searchText {
+  width: 60%;
+  border: 1px solid black;
+  overflow: scroll;
+  z-index: 7;
+  position: absolute;
+  left: 20%;
+  height: auto;
+  background-color: white;
+}
+.searchText:hover {
+  display: grid;
+  box-shadow: 0px 5px 5px 2px rgba(0, 0, 0, 0.2);
+}
+.selected {
+  background-color: grey;
+}
+.not-selected {
+  background-color: white;
+}
+.searchContent {
+  height: min-content;
+}
+.selected-list {
+  float: left;
+  background-color: black;
+  color: #fff;
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 5px;
+  list-style: none;
+}
+a.Close {
+  font-size: 16px !important;
+  line-height: 18px;
+  float: right;
+  margin: 1px 0 0 8px;
+  padding: 0;
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+}
+input {
+  margin: 0;
+  padding: 1px 0;
+  background-color: white;
+  line-height: 30px;
+  border: none;
+  outline: none;
+  width: 100%;
+  box-shadow: none;
+  height: 29px;
+  margin-left: none;
+}
+.Dropdown {
+  width: 95%;
+  overflow: scroll;
+  z-index: 7;
+  background-color: white;
+  max-height: 100px;
+  position: relative;
+
+  font-size: 20px;
 }
 
-
-.btn{
-    padding: 5px 10px;
-    border: none;
-}
-.btn-search{
-    padding: 12px 30px;
-    background-color: #28282B;
-    margin-left: -5px;
-    color:#fff;
-    cursor: pointer;
-}
-.btn-search-disabled{
-    padding: 12px 30px;
-    background-color: #aaa;
-    margin-left: -1px;
-    color:#fff;
-    border: #aaa 1px solid;
-    cursor: not-allowed;
-}
-
-.ekart-search-result-for{
-    margin: 20px auto;
-    padding: 10px 140px;
+.list-Down:hover {
+  background-color: grey;
+  cursor: pointer;
 }

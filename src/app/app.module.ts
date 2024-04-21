@@ -1,42 +1,57 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { TopHeaderComponent } from './top-header/top-header.component';
+import { PostingsComponent } from './container/postings/postings.component';
 import { SearchComponent } from './container/search/search.component';
 import { ContainerComponent } from './container/container.component';
-import { FormsModule } from '@angular/forms';
-import { ProductListComponent } from './container/product-list/product-list.component';
-import { ProductComponent } from './container/product-list/product/product.component';
-import { FilterComponent } from './container/product-list/filter/filter.component';
-import { ProductDetailComponent } from './container/product-detail/product-detail.component';
-import { SetBackground } from './CustomDirectives/SetBackground.directive';
-import { HighlightDirective } from './CustomDirectives/highlight.directive';
-import { AppHoverDirective } from './CustomDirectives/app-hover.directive';
-import { DisableProductDirective } from './CustomDirectives/disable-product.directive';
+import { CarouselModule } from 'primeng/carousel';
+import { ButtonModule } from 'primeng/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MapViewComponent } from './container/search/map-view/map-view.component';
+import { MatCardModule } from '@angular/material/card';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RegisterFormComponent } from './header/register-form/register-form.component';
+import { LoginFormComponent } from './header/login-form/login-form.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    TopHeaderComponent,
+    PostingsComponent,
     SearchComponent,
     ContainerComponent,
-    ProductListComponent,
-    ProductComponent,
-    FilterComponent,
-    ProductDetailComponent,
-    SetBackground,
-    HighlightDirective,
-    AppHoverDirective,
-    DisableProductDirective
+    MapViewComponent,
+    LoginFormComponent,
+    RegisterFormComponent,
   ],
   imports: [
+    CarouselModule,
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    ButtonModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatCardModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatListModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [provideAnimationsAsync()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
