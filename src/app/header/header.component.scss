@@ -1,70 +1,47 @@
-.header {
-  background-color: black;
-}
-.anahit--header {
-  width: 100%;
-  height: 50vh;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  font-size: 20px;
-  border-bottom: 1px solid grey;
-}
-.header-link:hover {
-  text-decoration: underline;
-}
-a {
-  color: white;
+
+.ekart--header{
+    width: 100%;
+    height: 11vh;
+    display:flex;
+    flex-wrap: wrap;
+    border-bottom: #E5E4E2 1.5px solid;
 }
 
-.anahitLogo {
-  height: 30vh;
+.ekart-logo{
+    padding: 1.2vh 8vh;
+    font-size: 40px;
+    font-weight: bold;
+    color: #36454F;
+    font-family: 'Concert One', cursive;
+    width:20%;
 }
-
-a {
-  text-decoration: none;
-  padding: 0 10px;
+.ekart--header--nav{
+    width: 80%;
+    padding: 1vh 2vh;
+    font-size: 10px;
 }
-
-.menu {
-  display: flex;
-  justify-content: center;
+.ekart--top--bar{
+    width:auto;
+    text-align: right;
+    padding-top: 3px;
+    padding-bottom: 15px;
+    padding-right: 30px;
 }
-.menu-link {
-  padding: 10px;
+.ekart-menu{
+    padding-top: 2vh;
+    padding: 1vh 1vh;
+    color: #36454F;
+    font-family: 'Montserrat', sans-serif;
+    font-weight:normal;
+    font-size: 14px;
+    width:70%;
+    text-align: center;
 }
-
-.menu-link:hover {
-  background-color: rgb(48, 48, 48);
+.ekart--bottom--bar{
+    display: flex;
 }
-
-.dropdown:hover .dropbtn {
-  background-color: red;
-}
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #000000;
-  width: 100%;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 999;
-  right: 1px;
-  top: 40px;
-}
-.dropdown-content a {
-  float: none;
-  color: rgb(255, 255, 255);
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-.dropdown-content a:hover {
-  background-color: #2b2b2b;
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
+a{
+    text-decoration: none;   
+    padding: 0 10px; 
+    color: #28282B;
 }

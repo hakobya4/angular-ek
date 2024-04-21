@@ -1,14 +1,15 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component,Input, ViewChild } from '@angular/core';
+import { ProductListComponent } from './product-list/product-list.component';
 
 @Component({
   selector: 'app-container',
   templateUrl: './container.component.html',
-  styleUrl: './container.component.css',
+  styleUrl: './container.component.css'
 })
 export class ContainerComponent {
-  mapView = false;
-
-  public openMap($event: any): void {
-    this.mapView = $event;
+  searchText: string = ''
+  @ViewChild(ProductListComponent) productListComponent:ProductListComponent;
+  setSearchText(value:string){
+    this.searchText=value
   }
 }

@@ -1,3 +1,4 @@
-* {
-  background-color: white !important;
+.ekart--product--container{
+    padding: 0px 20vh;
+    margin: 20px auto;
 }
