@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
-
+//component
 @Component({
   selector: 'app-container',
   templateUrl: './container.component.html',
