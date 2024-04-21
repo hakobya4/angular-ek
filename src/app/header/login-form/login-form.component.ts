@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterFormComponent } from '../register-form/register-form.component';
+import { environment } from '../../environment';
 
 declare var google: any;
 @Component({
@@ -20,8 +21,7 @@ export class LoginFormComponent implements OnInit {
   loggedInUser: any;
   ngOnInit(): void {
     google.accounts.id.initialize({
-      client_id:
-        '414696942433-abqv4vfbhfkr1fuqhiohf606c344h0q1.apps.googleusercontent.com',
+      client_id: environment.googleClientId,
       callback: (resp: any) => {
         this.handleGoogleLogin(resp);
       },

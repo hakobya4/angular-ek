@@ -6,10 +6,6 @@ import { HeaderComponent } from './header/header.component';
 import { PostingsComponent } from './container/postings/postings.component';
 import { SearchComponent } from './container/search/search.component';
 import { ContainerComponent } from './container/container.component';
-import { SetBackground } from './CustomDirectives/SetBackground.directive';
-import { HighlightDirective } from './CustomDirectives/highlight.directive';
-import { AppHoverDirective } from './CustomDirectives/app-hover.directive';
-import { DisableProductDirective } from './CustomDirectives/disable-product.directive';
 import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
 import { MatSelectModule } from '@angular/material/select';
@@ -34,10 +30,6 @@ import { MatListModule } from '@angular/material/list';
     PostingsComponent,
     SearchComponent,
     ContainerComponent,
-    SetBackground,
-    HighlightDirective,
-    AppHoverDirective,
-    DisableProductDirective,
     MapViewComponent,
     LoginFormComponent,
     RegisterFormComponent,

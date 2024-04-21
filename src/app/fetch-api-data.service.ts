@@ -7,6 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from './environment';
 
 const apiUrl = 'https://api.repliers.io/listings?hasImages=true';
 @Injectable({
@@ -21,7 +22,7 @@ export class fetchAPI {
     return this.http
       .get<any>(apiUrl, {
         headers: new HttpHeaders({
-          'REPLIERS-API-KEY': 'V7yY5iJO3aLLIH9bZg1MKHD2hj6d1p',
+          'REPLIERS-API-KEY': environment.repliersAPI,
           'content-type': 'application/json',
         }),
       })
