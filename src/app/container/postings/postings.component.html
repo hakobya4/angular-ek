@@ -1,0 +1,87 @@
+<p-carousel
+  [value]="postings"
+  [numVisible]="4"
+  [numScroll]="1"
+  [circular]="true"
+  [responsiveOptions]="responsiveOptions"
+  [autoplayInterval]="4000"
+>
+  <ng-template let-posting pTemplate="item">
+    <article class="product-item">
+      <a
+        href=""
+        style="
+          color: black;
+          position: relative;
+          text-decoration: none;
+          width: 200px;
+        "
+      >
+        <div class="product-item-content">
+          <img
+            style="width: 300px; height: 250px"
+            src="../../assets/no_picture.jpg"
+          />
+          <div style="padding-bottom: 5%; padding-left: 7%; text-align: start">
+            <br />
+            <div>
+              ${{ posting.listPrice | number : "1.0-0" }}
+              <span *ngIf="posting.listPrice < 100000">/ monthly</span>
+            </div>
+            <div>
+              {{ posting.address.streetNumber }}
+              {{ posting.address.streetName }}
+            </div>
+          </div>
+          <div
+            style="
+              font-size: 10px;
+              background-color: lightgrey;
+              text-align: start;
+              padding: 5%;
+              overflow: hidden;
+              text-wrap: nowrap;
+            "
+          >
+            <span>
+              <strong>MLS<sup class="sup_">®</sup>#:</strong>
+              {{ posting.mlsNumber }}
+            </span>
+
+            <br />
+            <span><strong>Status:</strong> {{ posting.status }} </span><br />
+            <span><strong>Type:</strong> {{ posting.type }} </span><br />
+            <span
+              ><strong>Community: </strong>{{ posting.address.neighborhood }} -
+              {{ posting.address.area }}</span
+            >
+          </div>
+          <div>
+            <span>
+              <img
+                style="width: 20px; opacity: 0.5"
+                src="../../assets/bed.png"
+              /><span *ngIf="posting.details.numBedrooms; else elseBlock">
+                {{ posting.details.numBedrooms }}
+              </span>
+              <ng-template #elseBlock> -- </ng-template>
+            </span>
+            <span>
+              <img
+                style="width: 20px; opacity: 0.5"
+                src="../../assets/shower.png"
+              /><span *ngIf="posting.details.numBathrooms; else elseBlock">{{
+                posting.details.numBathrooms
+              }}</span>
+              <ng-template #elseBlock> -- </ng-template>
+            </span>
+
+            <span *ngIf="posting.details.sqftRange"
+              >{{ posting.details.sqftRange }}
+            </span>
+          </div>
+        </div>
+      </a>
+    </article>
+  </ng-template>
+</p-carousel>

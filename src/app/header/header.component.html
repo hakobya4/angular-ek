@@ -1,0 +1,47 @@
+<div class="header">
+  <div class="anahit--header">
+    <a class="header-link" href="tel:6477166550" style="margin: 5%">
+      <span> Phone: 647-716-6550 </span>
+    </a>
+
+    <a href="#">
+      <img
+        style="cursor: pointer"
+        alt="Anahit Logo"
+        class="anahitLogo"
+        src="../../assets/anahit.jpeg"
+      />
+    </a>
+
+    <a class="header-link" href="mailto:davtyal_anahit@yahoo.com">
+      <span>Email: davtyan_anahit&#64;yahoo.com</span>
+    </a>
+  </div>
+  <div class="menu">
+    <a href="#" class="menu-link">HOME</a>
+    <a href="#" class="menu-link">MLS® SEARCH</a>
+    <a href="#" class="menu-link">ABOUT</a>
+    <a href="#" class="menu-link">CONTACT</a>
+    <a
+      class="menu-link"
+      *ngIf="!user"
+      (click)="openUserLoginDialog()"
+      style="color: white"
+      >LOGIN/REGISTER</a
+    >
+    <div
+      class="menu-link dropdown"
+      *ngIf="user"
+      style="display: flex; align-items: center; color: white; cursor: pointer"
+    >
+      <i style="margin-right: 5px" class="material-icons">account_circle</i>
+      {{ name?.toUpperCase() }}
+      <i style="margin-left: 5px" class="fa fa-caret-down"></i>
+      <div class="dropdown-content">
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a (click)="signOut()">Sign Out</a>
+      </div>
+    </div>
+  </div>
+</div>
