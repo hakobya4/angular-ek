@@ -22,8 +22,10 @@ import { MapViewComponent } from './container/search/map-view/map-view.component
 import { MatCardModule } from '@angular/material/card';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { MatDialogModule } from '@angular/material/dialog';
-import { RegisterFormComponent } from './register-form/register-form.component';
-import { LoginFormComponent } from './login-form/login-form.component';
+import { RegisterFormComponent } from './header/register-form/register-form.component';
+import { LoginFormComponent } from './header/login-form/login-form.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
     MatNativeDateModule,
     MatCardModule,
     MatDialogModule,
+    MatExpansionModule,
+    MatListModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],
