@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { RegisterFormComponent } from "../register-form/register-form.component";
 import { environment } from "../../environment";
+import { fetchAPI } from "src/app/services/fetch-api-data.service";
 
 declare var google: any;
 @Component({
@@ -38,14 +39,15 @@ export class LoginFormComponent implements OnInit {
     public dialogRef: MatDialogRef<LoginFormComponent>,
     public snackBar: MatSnackBar,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public fetchAPI: fetchAPI
   ) {}
 
   openRegisterDialog() {
     this.dialogRef.close();
     this.dialog.open(RegisterFormComponent, {
       width: "50%",
-      height: "70%",
+      height: "80%",
     });
   }
   closeDialogButton() {
@@ -60,5 +62,24 @@ export class LoginFormComponent implements OnInit {
       sessionStorage.setItem("loggedInUser", JSON.stringify(payLoad));
       this.closeDialogButton();
     }
+  }
+  loginUser(): void {
+    this.fetchAPI.userLogin(this.userData).subscribe(
+      (result) => {
+        localStorage.setItem("user", JSON.stringify(result.user));
+        localStorage.setItem("username", result.user.Username);
+        localStorage.setItem("token", result.token);
+        // Logic for a successful user login goes here! (To be implemented)
+        this.dialogRef.close(); // This will close the modal on success!
+        this.snackBar.open("Login Successful", "OK", {
+          duration: 2000,
+        });
+      },
+      () => {
+        this.snackBar.open("Incorrect Username or Password", "OK", {
+          duration: 2000,
+        });
+      }
+    );
   }
 }

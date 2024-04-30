@@ -1,20 +1,20 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, EventEmitter, Input, Output, OnInit } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 declare var google: any;
 
 @Component({
-  selector: 'map-view',
-  templateUrl: './map-view.component.html',
-  styleUrl: './map-view.component.css',
+  selector: "map-view",
+  templateUrl: "./map-view.component.html",
+  styleUrl: "./map-view.component.css",
 })
 export class MapViewComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   map: google.maps.Map;
-  label: any = '0px';
+  label: any = "0px";
 
   gtaBoundaries: any;
-  neigborhoodName: string = '';
+  neigborhoodName: string = "";
   communityTokens: any = {};
   public keepOriginalOrder = (a, b) => a.key;
   numberOfPairs: any;
@@ -43,7 +43,7 @@ export class MapViewComponent implements OnInit {
   }
   loadGeoJSONData(): void {
     this.http
-      .get('../../../../assets/toronto-on_.geojson')
+      .get("../../../../assets/toronto-on_.geojson")
       .subscribe((data: any) => {
         this.gtaBoundaries = data;
         this.initMap();
@@ -51,12 +51,12 @@ export class MapViewComponent implements OnInit {
       });
   }
   initMap(): void {
-    this.label = document.getElementById('overlay');
+    this.label = document.getElementById("overlay");
     const mapOptions: google.maps.MapOptions = {
       center: { lat: 43.65107, lng: -79.347015 }, // Set initial center coordinates
       zoom: 10, // Set initial zoom level
     };
-    this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    this.map = new google.maps.Map(document.getElementById("map"), mapOptions);
   }
 
   deleteToken(key: any, value: any): void {
@@ -82,30 +82,30 @@ export class MapViewComponent implements OnInit {
           });
           const boundary = new google.maps.Polygon({
             paths: paths,
-            strokeColor: '#000000',
+            strokeColor: "#000000",
             strokeOpacity: 0.5,
             strokeWeight: 1,
-            fillColor: 'none',
+            fillColor: "none",
             fillOpacity: 0.2,
             content: neigborhood,
           });
 
           // Add event listeners for mouseover and mouseout
-          boundary.addListener('mouseover', (event) => {
+          boundary.addListener("mouseover", (event) => {
             const mouseX = event.domEvent.clientX;
             const mouseY = event.domEvent.clientY;
-            this.label.style.left = mouseX + 'px';
-            this.label.style.top = mouseY + 'px';
-            this.label.style.display = 'block';
-            this.neigborhoodName = neigborhood + ', Toronto';
+            this.label.style.left = mouseX + "px";
+            this.label.style.top = mouseY + "px";
+            this.label.style.display = "block";
+            this.neigborhoodName = neigborhood + ", Toronto";
           });
 
-          boundary.addListener('mouseout', (event) => {
+          boundary.addListener("mouseout", (event) => {
             // Revert to original style
-            this.neigborhoodName = '';
-            this.label.style.display = 'none';
+            this.neigborhoodName = "";
+            this.label.style.display = "none";
           });
-          boundary.addListener('click', (event) => {
+          boundary.addListener("click", (event) => {
             if (this.neigborhoodName in this.communityTokens) {
               delete this.communityTokens[this.neigborhoodName];
               this.numberOfPairs = Object.keys(this.communityTokens).length;

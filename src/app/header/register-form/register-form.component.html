@@ -34,6 +34,7 @@
           ngModel
           #username="ngModel"
           autocomplete="off"
+          [(ngModel)]="userData.Username"
         />
         <mat-error
           *ngIf="username.invalid && (username.dirty || username.touched)"
@@ -64,6 +65,7 @@
           #password="ngModel"
           autocomplete="off"
           (ngModelChange)="(password.value)"
+          [(ngModel)]="userData.Password"
         />
         <mat-error
           *ngIf="password.invalid && (password.dirty || password.touched)"
@@ -92,6 +94,7 @@
           #email="ngModel"
           email
           autocomplete="off"
+          [(ngModel)]="userData.Email"
         />
         <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
           <i class="errorMessage" *ngIf="email.errors?.['required']"
@@ -102,6 +105,29 @@
           </i>
         </mat-error>
       </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="date"
+          placeholder="Birthday"
+          id="Birthday"
+          name="Birthday"
+          required
+          class="custom-placeholder"
+          ngModel
+          #birthday="ngModel"
+          birthday
+          autocomplete="off"
+          [(ngModel)]="userData.Birthday"
+        />
+        <mat-error
+          *ngIf="birthday.invalid && (birthday.dirty || birthday.touched)"
+        >
+          <i class="errorMessage" *ngIf="birthday.errors?.['required']"
+            >Birthday is required.</i
+          >
+        </mat-error>
+      </mat-form-field>
     </form>
     <mat-dialog-actions align="end" style="justify-content: end">
       <button
@@ -109,6 +135,7 @@
         class="button"
         color="primary"
         style="border-radius: 10px"
+        (click)="registerUser()"
       >
         Register
       </button>

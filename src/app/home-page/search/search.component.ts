@@ -1,17 +1,17 @@
-import { Component, EventEmitter, Output, Input, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, EventEmitter, Output, Input, OnInit } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrl: './search.component.css',
+  selector: "app-search",
+  templateUrl: "./search.component.html",
+  styleUrl: "./search.component.css",
 })
 export class SearchComponent implements OnInit {
   constructor(private http: HttpClient) {}
-  optionValue = 'City';
-  searchText: string = '';
+  optionValue = "Community";
+  searchText: string = "";
   selectedToken: any = {};
-  placeholder: string = 'City';
+  placeholder: string = "Community";
   public keepOriginalOrder = (a, b) => a.key;
   geoJSONData: any;
   neighborhoods: any = {};
@@ -24,11 +24,11 @@ export class SearchComponent implements OnInit {
   }
   loadGeoJSONData(): void {
     this.http
-      .get('../../../../assets/toronto-on_.geojson')
+      .get("../../../../assets/toronto-on_.geojson")
       .subscribe((data: any) => {
         data.features.forEach((feature: any) => {
           const geometry = feature.geometry;
-          this.neighborhoodname.push(feature.properties.name + ', Toronto');
+          this.neighborhoodname.push(feature.properties.name + ", Toronto");
           const neigborhood = feature.properties.name;
           const coordinates = geometry.coordinates;
           coordinates.forEach((multiPolygon: any) => {
@@ -42,10 +42,10 @@ export class SearchComponent implements OnInit {
               });
               const boundary = new google.maps.Polygon({
                 paths: paths,
-                strokeColor: '#000000',
+                strokeColor: "#000000",
                 strokeOpacity: 0.5,
                 strokeWeight: 1,
-                fillColor: 'none',
+                fillColor: "none",
                 fillOpacity: 0.2,
               });
               this.neighborhoods[neigborhood] = boundary;
@@ -60,7 +60,7 @@ export class SearchComponent implements OnInit {
 
   @Input() mapView: boolean = false;
 
-  searchOptions: String[] = ['City', 'Community', 'Address', 'MLS ® #'];
+  searchOptions: String[] = ["Community", "Address", "MLS ® #"];
 
   public closeMap($event: any): void {
     this.mapView = $event;
@@ -73,7 +73,7 @@ export class SearchComponent implements OnInit {
   }
   onBackspace(event) {
     if (!this.searchText) {
-      if (event.key === 'Backspace') {
+      if (event.key === "Backspace") {
         this.backspaceCount++;
 
         if (this.backspaceCount === 2) {
@@ -108,7 +108,7 @@ export class SearchComponent implements OnInit {
       this.selectedToken[item] = this.neighborhoods[item];
     }
     this.neighborhoodname.splice(this.neighborhoodname.indexOf(item), 1);
-    this.searchText = '';
+    this.searchText = "";
   }
 
   @Output()

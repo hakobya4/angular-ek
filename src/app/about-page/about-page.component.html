@@ -1,0 +1,83 @@
+<app-header></app-header>
+<div style="display: flex">
+  <div style="width: 70%">
+    <div class="soldTitle">ABOUT ME</div>
+    <div class="soldTitle">SOLD HOMES</div>
+    <div *ngFor="let item of homesSold | keyvalue : keepOriginalOrder">
+      <article class="product-item">
+        <a
+          style="
+            color: black;
+            position: relative;
+            text-decoration: none;
+            width: 200px;
+          "
+        >
+          <div class="product-item-content">
+            <img
+              src="../../assets/sold.png"
+              alt="sold banner"
+              class="soldBanner"
+            />
+            <img
+              style="width: 50%; height: 50%"
+              src="../../assets/{{ item.value['image'] }}"
+              alt="{{ item.value['image'] }}"
+            />
+            <div class="soldListing">
+              <span>
+                <strong>List Price:</strong>
+                ${{ item.value["listPrice"] }}
+                <br />
+                <strong>Sold Price:</strong>
+                ${{ item.value["soldPrice"] }}
+                <br />
+                <strong>Address:</strong>
+                {{ item.value["address"]["streetNumber"] }}
+                {{ item.value["address"]["streetName"] }}
+                {{ item.value["address"]["streetSuffix"] }}
+                <br />
+                <strong>MLS<sup class="sup_">®</sup>#:</strong>
+                {{ item.value["mlsNumber"] }}
+              </span>
+            </div>
+            <div>
+              <span>
+                <img
+                  style="width: 20px; opacity: 0.5"
+                  src="../../assets/bed.png"
+                /><span> {{ item.value["details"]["numBedrooms"] }} </span>
+                <ng-template #elseBlock> -- </ng-template>
+              </span>
+              <span>
+                <img
+                  style="width: 20px; opacity: 0.5"
+                  src="../../assets/shower.png"
+                /><span> {{ item.value["details"]["numBathrooms"] }} </span>
+                <ng-template #elseBlock> -- </ng-template>
+              </span>
+            </div>
+          </div>
+        </a>
+      </article>
+    </div>
+  </div>
+  <div class="about-info">
+    <img
+      alt="anahit thumbnail"
+      class="about-thumbnail"
+      src="../../assets/anahit_thumbnail.jpeg"
+    />
+    <br />
+    <div
+      style="
+        background-color: rgba(36, 59, 53, 255);
+        color: white;
+        font-size: 30px;
+        padding: 5%;
+      "
+    >
+      Anahit Davtyan
+    </div>
+  </div>
+</div>

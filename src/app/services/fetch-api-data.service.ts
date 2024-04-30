@@ -7,9 +7,10 @@ import {
 } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { map } from "rxjs/operators";
-import { environment } from "./environment";
+import { environment } from "../environment";
 
 const apiUrl = "https://api.repliers.io/listings?hasImages=true";
+const apiUserUrl = "https://movie-api-myflix-39dfea723223.herokuapp.com/";
 @Injectable({
   providedIn: "root",
 })
@@ -27,6 +28,19 @@ export class fetchAPI {
         }),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
+  }
+  public userRegistration(userDetails: any): Observable<any> {
+    console.log(userDetails);
+    return this.http
+      .post(apiUserUrl + "users", userDetails)
+      .pipe(catchError(this.handleError));
+  }
+
+  public userLogin(userDetails: any): Observable<any> {
+    console.log(userDetails);
+    return this.http
+      .post(apiUserUrl + "login", userDetails)
+      .pipe(catchError(this.handleError));
   }
 
   // Non-typed response extraction

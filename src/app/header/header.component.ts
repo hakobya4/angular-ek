@@ -1,40 +1,63 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { MatDialog } from '@angular/material/dialog';
-import { AuthService } from '../auth.service';
+import { Component, OnInit, inject } from "@angular/core";
+import { LoginFormComponent } from "./login-form/login-form.component";
+import { MatDialog } from "@angular/material/dialog";
+import { AuthService } from "../services/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  selector: "app-header",
+  templateUrl: "./header.component.html",
+  styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent {
-  name = JSON.parse(sessionStorage.getItem('loggedInUser'))?.name;
-
+  name: any;
+  loading = false;
   auth = inject(AuthService);
   user: boolean = false;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private router: Router) {}
   ngOnInit() {
-    if (sessionStorage.getItem('loggedInUser')) {
+    if (sessionStorage.getItem("loggedInUser")) {
       this.user = true;
+      this.name = JSON.parse(sessionStorage.getItem("loggedInUser"))?.name;
+    } else if (localStorage.getItem("username")) {
+      this.user = true;
+      this.name = localStorage.getItem("username");
+    } else {
+      this.user = false;
     }
   }
   openUserLoginDialog(): void {
+    this.loading = true;
     const dialogRef = this.dialog.open(LoginFormComponent, {
-      width: '40%',
-      height: '60%',
+      width: "40%",
+      height: "60%",
     });
     dialogRef.afterClosed().subscribe((result) => {
-      if (sessionStorage.getItem('loggedInUser')) {
+      if (JSON.parse(sessionStorage.getItem("loggedInUser"))?.name) {
         this.user = true;
-        this.name = JSON.parse(sessionStorage.getItem('loggedInUser')!).name;
+        this.name = JSON.parse(sessionStorage.getItem("loggedInUser"))?.name;
+        this.loading = false;
+      } else if (localStorage.getItem("username")) {
+        this.user = true;
+        this.name = localStorage.getItem("username");
+        this.loading = false;
+      } else {
+        this.loading = false;
       }
     });
   }
   signOut() {
-    sessionStorage.removeItem('loggedInUser');
+    sessionStorage.removeItem("loggedInUser");
     this.auth.signOut();
     this.user = false;
+    this.router.navigate(["welcome"]);
+    localStorage.clear();
+  }
+  profileView(): void {
+    this.router.navigate(["profile"]);
+  }
+  aboutView(): void {
+    this.router.navigate(["about"]);
   }
 }
