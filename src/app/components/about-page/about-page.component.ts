@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { SoldHomes } from "../services/sold-homes.service";
+import { SoldHomes } from "../../services/sold-homes.service";
 
 @Component({
   selector: "about-page",

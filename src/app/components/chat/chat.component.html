@@ -1,0 +1,69 @@
+<div class="chat">
+  <img
+    class="chat-message"
+    *ngIf="!messageOpen"
+    src="../../../assets/message.png"
+    (click)="openMessage()"
+  />
+  <div class="open-chat" *ngIf="messageOpen">
+    <div class="chat-title">
+      <span>MESSAGES </span>
+      <div style="cursor: pointer" (click)="closeMessage()">X</div>
+    </div>
+    <div class="chat-content">
+      <ul class="messages-chat" #openChat>
+        <ng-container *ngFor="let msg of messages">
+          <li
+            [ngClass]="{
+              'chat-to':
+                msg.recipientId === '1234' ,
+              'chat-from': msg.senderId === '1234',
+            }"
+          >
+            <i
+              *ngIf="msg.senderId === senderUserId"
+              style="font-size: 8px; width: 40px; padding-top: 15px"
+            >
+              {{ msg.timestamp?.toDate() | date : "h:mm a" }}
+            </i>
+            <i
+              *ngIf="msg.senderId === senderUserId"
+              style="padding-top: 20px"
+              class="material-icons"
+              >account_circle</i
+            >
+            <p
+              [ngClass]="{
+                'message-to': msg.recipientId === '1234',
+                'message-from': msg.senderId === '1234'
+              }"
+            >
+              {{ msg.message }}
+            </p>
+            <img
+              *ngIf="msg.recipientId === senderUserId"
+              class="anahit-icon"
+              src="../../../assets/anahit_thumbnail.jpeg"
+              alt="anahit"
+            />
+            <i
+              *ngIf="msg.recipientId === senderUserId"
+              style="font-size: 8px; width: 40px; padding-top: 15px"
+            >
+              {{ msg.timestamp?.toDate() | date : "h:mm a" }}
+            </i>
+          </li>
+        </ng-container>
+      </ul>
+      <div class="input-content">
+        <input
+          #message
+          (keyup.enter)="sendMessage(message.value)"
+          placeholder="Type your message..."
+          [(ngModel)]="messageInput"
+        />
+        <button (click)="sendMessage(message.value)">Send</button>
+      </div>
+    </div>
+  </div>
+</div>

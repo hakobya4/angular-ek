@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 
 // This import brings in the API calls
-import { fetchAPI } from "../../services/fetch-api-data.service";
+import { fetchAPI } from "../../../services/fetch-api-data.service";
 @Component({
   selector: "postings",
   templateUrl: "./postings.component.html",

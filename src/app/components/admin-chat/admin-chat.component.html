@@ -1,0 +1,60 @@
+<div class="user-chat" *ngFor="let usr of users" (click)="openAdminChat(usr)">
+  <div class="user-id">{{ usr }}</div>
+  <div class="chat-content">
+    <div *ngIf="adminChatOpen && user == usr" class="admin-chat">
+      <ul class="admin-chat-content" #openChat>
+        <div *ngFor="let msg of userMessages">
+          <li
+            [ngClass]="{
+            'chat-to':
+              msg.senderId === usr ,
+            'chat-from': msg.recipientId === usr,
+          }"
+          >
+            <i
+              *ngIf="msg.senderId === usr"
+              style="font-size: 8px; width: 40px; padding-top: 15px"
+            >
+              {{ msg.timestamp?.toDate() | date : "h:mm a" }}
+            </i>
+            <i
+              *ngIf="msg.senderId === usr"
+              style="padding-top: 20px"
+              class="material-icons"
+              >account_circle</i
+            >
+            <p
+              [ngClass]="{
+                'message-to': msg.senderId === usr,
+                'message-from': msg.recipientId === usr
+              }"
+            >
+              {{ msg.message }} ({{ msg.username }})
+            </p>
+            <img
+              *ngIf="msg.recipientId === usr"
+              class="anahit-icon"
+              src="../../../assets/anahit_thumbnail.jpeg"
+              alt="anahit"
+            />
+            <i
+              *ngIf="msg.recipientId === usr"
+              style="font-size: 8px; width: 40px; padding-top: 15px"
+            >
+              {{ msg.timestamp?.toDate() | date : "h:mm a" }}
+            </i>
+          </li>
+        </div>
+      </ul>
+      <div class="input-content">
+        <input
+          [(ngModel)]="messageInput"
+          #message
+          (keyup.enter)="sendAdminMessage(message.value)"
+          placeholder="Type your message..."
+        />
+        <button (click)="sendAdminMessage(message.value)">Send</button>
+      </div>
+    </div>
+  </div>
+</div>

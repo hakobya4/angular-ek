@@ -1,3 +1,6 @@
 * {
   background-color: white !important;
 }
+.home-page {
+  max-height: 500px;
+}

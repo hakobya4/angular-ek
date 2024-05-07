@@ -24,15 +24,31 @@
     <a href="#" class="menu-link">CONTACT</a>
     <a
       class="menu-link"
-      *ngIf="!loading"
+      *ngIf="!loading && !user"
       (click)="openUserLoginDialog()"
       style="color: white"
       >LOGIN/REGISTER</a
     >
     <div *ngIf="loading" class="loader" style="margin-left: 2%"></div>
     <div
+      (click)="adminView()"
+      class="menu-link"
+      *ngIf="email == admin"
+      style="color: white"
+    >
+      ADMIN
+    </div>
+    <div
+      class="menu-link"
+      *ngIf="email == admin"
+      style="color: white"
+      (click)="signOut()"
+    >
+      SIGN OUT
+    </div>
+    <div
       class="menu-link dropdown"
-      *ngIf="user"
+      *ngIf="user && email != admin"
       style="display: flex; align-items: center; color: white; cursor: pointer"
     >
       <i style="margin-right: 5px" class="material-icons">account_circle</i>

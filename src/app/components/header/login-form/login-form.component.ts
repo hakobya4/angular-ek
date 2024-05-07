@@ -9,8 +9,9 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { RegisterFormComponent } from "../register-form/register-form.component";
-import { environment } from "../../environment";
+import { environment } from "../../../environment";
 import { fetchAPI } from "src/app/services/fetch-api-data.service";
+import { ChatService } from "src/app/services/chat.service";
 
 declare var google: any;
 @Component({
@@ -20,6 +21,9 @@ declare var google: any;
 })
 export class LoginFormComponent implements OnInit {
   loggedInUser: any;
+  user = sessionStorage.getItem("loggedInUser");
+  messages: any[] = [];
+  email = JSON.parse(sessionStorage.getItem("loggedInUser"))?.email;
   ngOnInit(): void {
     google.accounts.id.initialize({
       client_id: environment.googleClientId,
@@ -40,7 +44,8 @@ export class LoginFormComponent implements OnInit {
     public snackBar: MatSnackBar,
     private router: Router,
     public dialog: MatDialog,
-    public fetchAPI: fetchAPI
+    public fetchAPI: fetchAPI,
+    public chatService: ChatService
   ) {}
 
   openRegisterDialog() {
@@ -60,6 +65,7 @@ export class LoginFormComponent implements OnInit {
     if (user) {
       const payLoad = this.decodeToken(user.credential);
       sessionStorage.setItem("loggedInUser", JSON.stringify(payLoad));
+
       this.closeDialogButton();
     }
   }
@@ -81,5 +87,14 @@ export class LoginFormComponent implements OnInit {
         });
       }
     );
+  }
+  public getMessage(): void {
+    if (this.user) {
+      this.chatService
+        .getMessage(JSON.parse(sessionStorage.getItem("loggedInUser")).email)
+        .then((messages) => {
+          this.messages = messages;
+        });
+    }
   }
 }

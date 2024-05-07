@@ -1,0 +1,89 @@
+.user-id {
+  border: 1px black solid;
+  padding: 5px;
+  width: 300px;
+  height: 50px;
+}
+.user-chat {
+  display: flex;
+  width: 100%;
+}
+.user-id:hover {
+  background-color: rgba(16, 89, 70, 255);
+  cursor: pointer;
+  color: white;
+}
+.chat-to {
+  display: flex;
+}
+.chat-from {
+  display: flex;
+  justify-content: right;
+}
+.message-to {
+  color: rgb(255, 255, 255);
+  font-size: 10px;
+  background-color: rgba(16, 89, 70, 255);
+  padding: 5px;
+  border-radius: 11px;
+  border: 1px solid rgb(58, 58, 58);
+  max-width: 40%;
+  width: fit-content;
+}
+.material-icons {
+  font-size: 10px;
+  margin-right: 5px;
+}
+.anahit-icon {
+  width: 10px;
+  margin-top: 20px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.message-from {
+  color: rgba(16, 89, 70, 255);
+  font-size: 10px;
+  background-color: rgb(255, 255, 255);
+  padding: 5px;
+  border-radius: 11px;
+  border: 1px solid rgb(58, 58, 58);
+  max-width: 40%;
+  width: fit-content;
+}
+.admin-chat {
+  height: 400px;
+  padding-left: 5px;
+  width: 400px;
+  border: 2px black solid;
+  position: absolute;
+}
+.admin-chat-content {
+  height: 300px;
+  overflow-y: scroll;
+}
+.input-content {
+  position: absolute;
+  padding-top: 10px;
+  width: 90%;
+  bottom: 10%;
+}
+input {
+  margin: 0;
+  padding-left: 10%;
+  background-color: white;
+  line-height: 30px;
+  border: none;
+  outline: none;
+  width: 70%;
+  box-shadow: none;
+  height: 30px;
+}
+button {
+  height: 30px;
+  width: 25%;
+  border-radius: 20px;
+  background-color: rgba(16, 89, 70, 255);
+  color: white;
+}
