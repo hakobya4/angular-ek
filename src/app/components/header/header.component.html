@@ -19,9 +19,9 @@
   </div>
   <div class="menu">
     <a href="#" class="menu-link">HOME</a>
-    <a href="#" class="menu-link">MLS® SEARCH</a>
+    <a (click)="mlsView()" class="menu-link">MLS® SEARCH</a>
     <a (click)="aboutView()" class="menu-link">ABOUT</a>
-    <a href="#" class="menu-link">CONTACT</a>
+    <a (click)="contactView()" class="menu-link">CONTACT</a>
     <a
       class="menu-link"
       *ngIf="!loading && !user"

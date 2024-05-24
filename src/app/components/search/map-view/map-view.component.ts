@@ -19,6 +19,7 @@ export class MapViewComponent implements OnInit {
   public keepOriginalOrder = (a, b) => a.key;
   numberOfPairs: any;
   latLng: any[] = [];
+  selected: boolean = false;
 
   ngOnInit(): void {
     this.loadGeoJSONData();
@@ -35,11 +36,13 @@ export class MapViewComponent implements OnInit {
   public closeMapView(): void {
     this.mapClose = false;
     this.onMapClose.emit(this.mapClose);
+    this.selected = false;
   }
   @Output()
   onSelectToken: EventEmitter<any[]> = new EventEmitter<any[]>();
   public selectToken(token: any[]): void {
     this.onSelectToken.emit(token);
+    this.closeMapView();
   }
   loadGeoJSONData(): void {
     this.http
@@ -112,8 +115,8 @@ export class MapViewComponent implements OnInit {
               boundary.setOptions({ fillOpacity: 0.2 });
             } else {
               this.communityTokens[this.neigborhoodName] = boundary;
-              this.numberOfPairs = Object.keys(this.communityTokens).length;
               boundary.setOptions({ fillOpacity: 0.6 });
+              this.numberOfPairs = Object.keys(this.communityTokens).length;
             }
           });
           boundary.setMap(this.map);

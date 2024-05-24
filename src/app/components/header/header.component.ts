@@ -74,4 +74,10 @@ export class HeaderComponent {
   adminView() {
     this.router.navigate(["admin"]);
   }
+  mlsView() {
+    this.router.navigate(["mls"]);
+  }
+  contactView() {
+    this.router.navigate(["contact"]);
+  }
 }

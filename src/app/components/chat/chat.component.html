@@ -1,3 +1,14 @@
+<div class="overlay" *ngIf="confirm" (click)="confirmClose()">
+  <div class="confirm-close">
+    <span style="padding-bottom: 5%; font-weight: 700"
+      >Would you like to end conversation?
+    </span>
+    <div style="width: 80%; display: flex; justify-content: space-between">
+      <button class="yesbutton" (click)="deleteChat()">Yes</button>
+      <button class="nobutton" (click)="confirmClose()">No</button>
+    </div>
+  </div>
+</div>
 <div class="chat">
   <img
     class="chat-message"
@@ -5,9 +16,12 @@
     src="../../../assets/message.png"
     (click)="openMessage()"
   />
+  <div *ngIf="unreadCount > 0 && !messageOpen" class="unreadCount">
+    {{ unreadCount }}
+  </div>
   <div class="open-chat" *ngIf="messageOpen">
     <div class="chat-title">
-      <span>MESSAGES </span>
+      <span>LIVE CHAT</span>
       <div style="cursor: pointer" (click)="closeMessage()">X</div>
     </div>
     <div class="chat-content">
@@ -20,10 +34,7 @@
               'chat-from': msg.senderId === '1234',
             }"
           >
-            <i
-              *ngIf="msg.senderId === senderUserId"
-              style="font-size: 8px; width: 40px; padding-top: 15px"
-            >
+            <i *ngIf="msg.senderId === senderUserId" class="timestamp">
               {{ msg.timestamp?.toDate() | date : "h:mm a" }}
             </i>
             <i
@@ -62,7 +73,9 @@
           placeholder="Type your message..."
           [(ngModel)]="messageInput"
         />
-        <button (click)="sendMessage(message.value)">Send</button>
+        <button [disabled]="!messageInput" (click)="sendMessage(message.value)">
+          Send
+        </button>
       </div>
     </div>
   </div>

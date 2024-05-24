@@ -32,8 +32,10 @@ import { provideFirebaseApp, getApp, initializeApp } from "@angular/fire/app";
 import { getFirestore, provideFirestore } from "@angular/fire/firestore";
 import { environment } from "./environment";
 import { ChatService } from "./services/chat.service";
-import { AdminChatComponent } from "./components/admin-chat/admin-chat.component";
+import { AdminChatComponent } from "./components/header/admin-chat/admin-chat.component";
 import { adminAuthGuard } from "./guards/adminauth.guards";
+import { MlsSearchComponent } from "./components/mls-search/mls-search.component";
+import { ContactPageComponent } from "./components/contact-page/contact-page.component";
 
 const config: SocketIoConfig = { url: "http://localhost:3000", options: {} };
 
@@ -51,6 +53,8 @@ const appRoutes: Routes = [
     component: AdminChatComponent,
     canActivate: [adminAuthGuard],
   },
+  { path: "mls", component: MlsSearchComponent },
+  { path: "contact", component: ContactPageComponent },
 ];
 @NgModule({
   declarations: [
@@ -66,11 +70,12 @@ const appRoutes: Routes = [
     AboutPageComponent,
     ChatComponent,
     AdminChatComponent,
+    MlsSearchComponent,
+    ContactPageComponent,
   ],
   imports: [
     CarouselModule,
     BrowserModule,
-    FormsModule,
     HttpClientModule,
     ButtonModule,
     MatSelectModule,

@@ -8,6 +8,7 @@ import {
   where,
   getDocs,
   onSnapshot,
+  deleteDoc,
 } from "@angular/fire/firestore";
 import { Observable, combineLatest, map } from "rxjs";
 import { getAuth, signInAnonymously } from "firebase/auth";
@@ -20,6 +21,8 @@ export class ChatService {
   username = JSON.parse(sessionStorage.getItem("loggedInUser"))?.name;
   adminChatSent = false;
   messages: any[] = [];
+  countUnread: any = 0;
+  recipientId: any;
   constructor(private fs: Firestore) {}
 
   signInAnonymously(): Promise<any> {
@@ -27,8 +30,6 @@ export class ChatService {
     return signInAnonymously(auth)
       .then(() => {
         sessionStorage.setItem("uid", auth.currentUser.uid);
-        const uid = sessionStorage.getItem("uid");
-        this.getMessage(uid);
       })
       .catch((error) => {
         console.error("Anonymous authentication failed:", error);
@@ -50,6 +51,7 @@ export class ChatService {
         recipientId: recipientUserId,
       };
       const messagesCollection = collection(this.fs, "messages");
+      this.countUnread = 0;
       try {
         await addDoc(messagesCollection, message);
       } catch (error) {
@@ -73,11 +75,64 @@ export class ChatService {
       recipientId: recipientUserId,
     };
     const messagesCollection = collection(this.fs, "messages");
+    this.countUnread += 1;
+    console.log(this.countUnread);
+
     try {
       await addDoc(messagesCollection, message);
       this.getMessage(sessionStorage.getItem("uid"));
     } catch (error) {
       console.error("Error sending message:", error);
+      throw error;
+    }
+  }
+  public async sendFirstAdmin(recipientUserId: string): Promise<any> {
+    let timestamp = Timestamp.now();
+    let message = {
+      message:
+        "Hello! My name is Anahit! Please let me know if you have any questions!",
+      timestamp,
+      senderId: "1234",
+      recipientId: recipientUserId,
+    };
+    this.countUnread += 1;
+    const messagesCollection = collection(this.fs, "messages");
+    try {
+      await addDoc(messagesCollection, message);
+      this.getMessage(sessionStorage.getItem("uid"));
+    } catch (error) {
+      console.error("Error sending message:", error);
+      throw error;
+    }
+  }
+  public async deleteMessages(userId: string): Promise<void> {
+    const messagesQuery = query(
+      collection(this.fs, "messages"),
+      where("senderId", "==", userId)
+    );
+    const recipientQuery = query(
+      collection(this.fs, "messages"),
+      where("recipientId", "==", userId)
+    );
+
+    try {
+      // Execute the query to retrieve the messages
+      const querySnapshot = await getDocs(messagesQuery);
+      const rquerySnapshot = await getDocs(recipientQuery);
+
+      // Iterate through the messages and delete each one from the database
+      querySnapshot.forEach((doc) => {
+        deleteDoc(doc.ref);
+      });
+
+      let deletedMessage = 1;
+      rquerySnapshot.forEach((doc) => {
+        deleteDoc(doc.ref);
+        deletedMessage += 1;
+      });
+      this.countUnread -= deletedMessage;
+    } catch (error) {
+      console.error("Error deleting user messages:", error);
       throw error;
     }
   }
@@ -132,9 +187,21 @@ export class ChatService {
     return combineLatest(senderObservable, recipientObservable).pipe(
       map(([senderMessages, recipientMessages]) => {
         // Merge sender and recipient messages into a single array
-        return [...senderMessages, ...recipientMessages].sort(
+
+        if (this.messages.length > 1) {
+          if (
+            [...senderMessages, ...recipientMessages].sort(
+              (a, b) => a["timestamp"] - b["timestamp"]
+            )[[...senderMessages, ...recipientMessages].length - 1].senderId ===
+            "1234"
+          ) {
+            this.countUnread += 1;
+          }
+        }
+        this.messages = [...senderMessages, ...recipientMessages].sort(
           (a, b) => a["timestamp"] - b["timestamp"]
         );
+        return this.messages;
       })
     );
   }

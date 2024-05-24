@@ -1,0 +1,62 @@
+[debug] [2024-05-19T01:34:49.896Z] ----------------------------------------------------------------------
+[debug] [2024-05-19T01:34:49.897Z] Command:       /opt/homebrew/Cellar/node/22.2.0/bin/node /usr/local/bin/firebase init
+[debug] [2024-05-19T01:34:49.898Z] CLI Version:   13.7.5
+[debug] [2024-05-19T01:34:49.898Z] Platform:      darwin
+[debug] [2024-05-19T01:34:49.898Z] Node Version:  v22.2.0
+[debug] [2024-05-19T01:34:49.898Z] Time:          Sat May 18 2024 21:34:49 GMT-0400 (Eastern Daylight Time)
+[debug] [2024-05-19T01:34:49.898Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-05-19T01:34:49.931Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-05-19T01:34:49.931Z] > authorizing via signed-in user (hakobyan.armenia@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/macintoshhd/Documents/GitHub/angular-ek
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-05-19T01:34:54.353Z] Using project from CLI flag: anahit-418118
+[debug] [2024-05-19T01:34:54.355Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/anahit-418118 [none]
+[debug] [2024-05-19T01:34:54.717Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/anahit-418118 200
+[debug] [2024-05-19T01:34:54.717Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/anahit-418118 {"projectId":"anahit-418118","projectNumber":"414696942433","displayName":"Anahit","name":"projects/anahit-418118","resources":{"hostingSite":"anahit-418118","realtimeDatabaseInstance":"anahit-418118-default-rtdb"},"state":"ACTIVE","etag":"1_9d732345-3fdc-4310-a198-e4fad6a2d7a2"}
+[info] i  Using project anahit-418118 (Anahit) 
+[info] 
+=== Functions Setup
+[debug] [2024-05-19T01:34:54.726Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-05-19T01:34:54.726Z] > authorizing via signed-in user (hakobyan.armenia@gmail.com)
+[debug] [2024-05-19T01:34:54.726Z] [iam] checking project anahit-418118 for permissions ["firebase.projects.get"]
+[debug] [2024-05-19T01:34:54.727Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/anahit-418118:testIamPermissions [none]
+[debug] [2024-05-19T01:34:54.727Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/anahit-418118:testIamPermissions x-goog-quota-user=projects/anahit-418118
+[debug] [2024-05-19T01:34:54.727Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/anahit-418118:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2024-05-19T01:34:54.962Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/anahit-418118:testIamPermissions 200
+[debug] [2024-05-19T01:34:54.962Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/anahit-418118:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2024-05-19T01:34:54.963Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/anahit-418118/services/cloudfunctions.googleapis.com [none]
+[debug] [2024-05-19T01:34:54.964Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/anahit-418118/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/anahit-418118
+[debug] [2024-05-19T01:34:54.966Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/anahit-418118/services/runtimeconfig.googleapis.com [none]
+[debug] [2024-05-19T01:34:54.966Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/anahit-418118/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/anahit-418118
+[debug] [2024-05-19T01:34:55.325Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/anahit-418118/services/runtimeconfig.googleapis.com 200
+[debug] [2024-05-19T01:34:55.325Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/anahit-418118/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2024-05-19T01:34:55.327Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/anahit-418118/services/cloudfunctions.googleapis.com 200
+[debug] [2024-05-19T01:34:55.327Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/anahit-418118/services/cloudfunctions.googleapis.com [omitted]
+[info] 
+Detected existing codebase(s): default
+
+[info] 
+Overwriting codebase default...
+
+[info] ✔  Wrote functions/package.json 

@@ -56,6 +56,15 @@ button {
   background-color: rgba(16, 89, 70, 255);
   color: white;
 }
+button:disabled {
+  background-color: rgba(16, 89, 70, 0.5);
+}
+.timestamp {
+  font-size: 8px;
+  width: 40px;
+  padding-top: 15px;
+  margin-top: 20px;
+}
 .messages-chat {
   overflow-y: scroll;
   max-height: 310px;
@@ -63,6 +72,7 @@ button {
   width: 100%;
 }
 .message-to {
+  margin-top: 20px;
   color: rgb(255, 255, 255);
   font-size: 10px;
   background-color: rgba(16, 89, 70, 255);
@@ -75,8 +85,10 @@ button {
 .material-icons {
   font-size: 10px;
   margin-right: 5px;
+  margin-top: 20px;
 }
 .anahit-icon {
+  margin-top: 20px;
   width: 10px;
   margin-top: 20px;
   height: 10px;
@@ -85,6 +97,7 @@ button {
   margin-left: 5px;
 }
 .message-from {
+  margin-top: 20px;
   color: rgba(16, 89, 70, 255);
   font-size: 10px;
   background-color: rgb(255, 255, 255);
@@ -100,4 +113,59 @@ button {
 .chat-from {
   display: flex;
   justify-content: right;
+}
+.unreadCount {
+  background-color: red;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  position: absolute;
+  border: 1px black solid;
+}
+.confirm-close {
+  position: sticky;
+  z-index: 13;
+  width: 400px;
+  top: 35%;
+  left: 35%;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid black;
+}
+.overlay {
+  position: absolute; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 150%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2); /* Black background with opacity */
+  z-index: 90; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+.yesbutton {
+  width: 100px;
+  background-color: white;
+  color: rgba(16, 89, 70, 255);
+  border: 1px solid rgba(16, 89, 70, 1);
+}
+.yesbutton:hover {
+  background-color: rgba(16, 89, 70, 0.9);
+  color: white;
+  border: 2px solid black;
+}
+.nobutton {
+  width: 100px;
+  border: none;
+}
+
+.nobutton:hover {
+  opacity: 0.7;
+  border: 2px solid black;
 }

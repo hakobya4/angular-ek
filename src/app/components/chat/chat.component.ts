@@ -18,18 +18,33 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   messages: any[] = [];
   messageOpen: boolean = false;
   recipientUserId: string = "1234";
-  senderUserId = sessionStorage.getItem("uid");
+  senderUserId: any;
   user = sessionStorage.getItem("loggedInUser");
   private initialized: boolean = false;
   private closeInitialized: boolean = false;
   google_picture = JSON.parse(sessionStorage.getItem("loggedInUser"))?.picture;
+  unreadCount: number = 0;
+  confirm: boolean = false;
+
   constructor(private chatService: ChatService) {}
 
   ngOnInit(): void {
-    this.chatService.signInAnonymously().catch((error) => {
-      console.error("Error authenticating user anonymously:", error);
-    });
-    this.listenForMessages();
+    this.chatService
+      .signInAnonymously()
+      .then((res) => (this.senderUserId = sessionStorage.getItem("uid")))
+      .catch((error) => {
+        console.error("Error authenticating user anonymously:", error);
+      })
+      .then(() => {
+        if (this.senderUserId) {
+          this.listenForMessages();
+          this.chatService.getMessage(this.senderUserId).then((res) => {
+            if (this.messages.length === 1) {
+              this.unreadCount = 1;
+            }
+          });
+        }
+      });
   }
   ngAfterViewChecked() {
     if (!this.initialized && this.messageContainer) {
@@ -47,28 +62,42 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   private listenForMessages(): void {
-    if (this.senderUserId) {
-      this.chatService
-        .listenForMessages(this.senderUserId)
-        .subscribe((messages) => {
-          // Update messages when changes occur
-          this.messages = messages;
-          console.log(this.messages);
-          if (this.initialized) {
-            this.closeInitialized = true;
-          }
-        });
-    }
+    this.chatService
+      .listenForMessages(this.senderUserId)
+      .subscribe((messages) => {
+        // Update messages when changes occur
+        this.messages = messages;
+        this.unreadCount = this.chatService.countUnread;
+        console.log(this.unreadCount);
+        if (messages.length == 0) {
+          this.chatService.sendFirstAdmin(this.senderUserId);
+          this.chatService.getMessage(this.senderUserId);
+        }
+        if (this.initialized) {
+          this.closeInitialized = true;
+        }
+      });
   }
   openMessage() {
     this.messageOpen = true;
     if (this.initialized) {
       this.closeInitialized = true;
     }
+    this.unreadCount = 0;
   }
   closeMessage() {
+    if (this.messages.length > 1) {
+      this.confirm = true;
+    } else {
+      this.messageOpen = false;
+      this.closeInitialized = false;
+      this.confirm = false;
+    }
+  }
+  confirmClose() {
     this.messageOpen = false;
     this.closeInitialized = false;
+    this.confirm = false;
   }
   scrollToBottom(): void {
     try {
@@ -84,5 +113,10 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       "chat-to": message.senderId === this.senderUserId,
       "chat-from": message.recipientId === this.senderUserId,
     };
+  }
+  deleteChat() {
+    if (this.senderUserId) {
+      this.chatService.deleteMessages(this.senderUserId);
+    }
   }
 }
